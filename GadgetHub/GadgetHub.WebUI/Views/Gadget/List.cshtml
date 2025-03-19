@@ -1,0 +1,21 @@
+﻿@model GadgetHub.WebUI.Models.GadgetListViewModel
+@using GadgetHub.WebUI.HtmlHelpers;
+
+@{
+    ViewBag.Title = "Gadget Catalog";
+}
+
+@foreach(var g in Model.Gadgets)
+{
+    <div class="card p-3 bg-light text-dark mb-2">
+        <h3><strong>@g.Name</strong></h3>
+            <p><strong>@g.Brand</strong></p>
+        <h3><span class="badge bg-primary float-end"> @g.Price.ToString("c")</span></h3>
+
+        <span class="lead">@g.Description</span>
+    </div>
+}
+
+<div class="btn-group float-end">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+</div>
